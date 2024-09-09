@@ -17,7 +17,8 @@ jobs.value = jobsJSON
         hasHandles: true,
         label: v.taskId,
         style: {
-          background
+          background,
+          color: 'black'
         }
       }
       startDate.value =
@@ -43,10 +44,7 @@ jobs.value = jobsJSON
   }, {})
 
 const values = Object.values(jobs.value)
-console.log(
-  values.map((v) => v.taskId),
-  'values'
-)
+
 </script>
 
 <template>
