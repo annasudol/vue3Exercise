@@ -5,20 +5,20 @@
             {
                 "taskId": "taskA-A",
                 "taskName": "Print",
-                "beginDate": "08:00",
-                "endDate": "09:00"
+                "beginDate": "05/09/2024, 08:00:00",
+                "endDate": "05/09/2024, 09:00:00"
             },
             {
                 "taskId": "taskA-B",
                 "taskName": "Laminate",
-                "beginDate": "09:00",
-                "endDate": "11:00"
+                "beginDate": "05/09/2024, 09:00:00",
+                "endDate": "05/09/2024, 11:00:00"
             },
             {
                 "taskId": "taskA-C",
                 "taskName": "Trim",
-                "beginDate": "11:00",
-                "endDate": "14:00"
+                "beginDate": "05/09/2024, 11:00:00",
+                "endDate": "05/09/2024, 14:00:00"
             }
         ]
     },
@@ -28,20 +28,20 @@
             {
                 "taskId": "taskB-A",
                 "taskName": "Print",
-                "beginDate": "09:00",
-                "endDate": "10:00"
+                "beginDate": "05/09/2024, 11:00:00",
+                "endDate": "05/09/2024, 12:00:00"
             },
             {
                 "taskId": "taskA-B",
                 "taskName": "Laminate",
-                "beginDate": "11:00",
-                "endDate": "13:00"
+                "beginDate": "05/09/2024, 12:00:00",
+                "endDate": "05/09/2024, 14:00:00"
             },
             {
                 "taskId": "taskB-C",
                 "taskName": "Trim",
-                "beginDate": "14:00",
-                "endDate": "15:00"
+                "beginDate": "05/09/2024, 14:00:00",
+                "endDate": "05/09/2024, 13:00:00"
             }
         ]
     }
