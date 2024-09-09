@@ -3,8 +3,7 @@ import { ref } from "vue";
 import { GGanttChart, GGanttRow } from "@infectoone/vue-ganttastic";
 import jobsJSON from "../data/jobs.json";
 
-const jobs = ref(null);
-
+const jobs = ref([]);
 
 jobs.value = jobsJSON.map(data=> data.tasks.map(item=> {
   return {
@@ -20,7 +19,7 @@ jobs.value = jobsJSON.map(data=> data.tasks.map(item=> {
           background: "#77d6fa"
     }
   }
-}}))
+}})).flat()
 console.log(jobs, 'jobs');
 
 const context = ref([
@@ -32,7 +31,7 @@ const context = ref([
       ganttBarConfig: {
         id: "0",
         hasHandles: true,
-        label: "T1",
+        label: "A1-1",
         style: {
           background: "#e96560"
         }
@@ -43,13 +42,13 @@ const context = ref([
     {
       taskId: "Laminate",
       beginDate: "09:00",
-      endDate: "18:00",
+      endDate: "10:00",
       ganttBarConfig: {
         id: "1",
         hasHandles: true,
-        label: "t2",
+        label: "A1-2",
         style: {
-          background: "#5ccfa3"
+          background: "#e96560"
         }
       }
     }
@@ -57,14 +56,14 @@ const context = ref([
   [
     {
       taskId: "Trim",
-      beginDate: "07:00",
-      endDate: "20:00",
+      beginDate: "10:00",
+      endDate: "12:00",
       ganttBarConfig: {
         id: "2",
         hasHandles: true,
-        label: "A2",
+        label: "A1-3",
         style: {
-          background: "#77d6fa"
+          background: "#e96560"
         }
       }
     }
