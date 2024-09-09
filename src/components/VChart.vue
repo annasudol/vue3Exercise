@@ -2,14 +2,13 @@
 import { ref } from "vue";
 import { GGanttChart, GGanttRow } from "@infectoone/vue-ganttastic";
 import jobsJSON from "../data/jobs.json";
-import randomRgba from "@/helpers/randomRgba";
-import dateFormat from "@/helpers/dateFormat";
-
+const randomHexColorCode = () => {
+  let n = (Math.random() * 0xfffff * 1000000).toString(16);
+  return '#' + n.slice(0, 6);
+};
 const jobs = ref([]);
-const startDate = ref(null);
-const endDate = ref(null);
 jobs.value = jobsJSON.map((data)=> {
-  const background= randomRgba();
+  const background= randomHexColorCode();
   const value = data.tasks.map(v=> {
     const ganttBarConfig= {
         id: v.taskId,
@@ -17,40 +16,28 @@ jobs.value = jobsJSON.map((data)=> {
         hasHandles: true,
         label: v.taskId,
         style: {
-          background,
-          color: 'black'
+          background
         }
       };
-      // const d_begin= new Date(v.beginDate);
-     startDate.value = new Date(startDate.value) < new Date(v.beginDate) ? startDate.value : v.beginDate;
-    //  endDate.value = new Date(endDate.value) > new Date(v.endDate) ? endDate.value : v.endDate;
-      if(startDate.value) {
-          startDate.value = new Date(startDate.value) < new Date(v.beginDate) ? startDate.value : v.beginDate;
-      } else {
-        startDate.value = v.beginDate
-      }
-  
-      // endDate.value = new Date(endDate.value) > d_end ? endDate.value : v.endDate;
+
       return {jobId: data.jobId,  background, ganttBarConfig, taskId: v.taskName, beginDate: v.beginDate, endDate: v.endDate};
   });
   return value
-});
-
-//group job by the same taskId like: print, laminate, trim
-const values= Object.values(jobs.value.flat().reduce((acc, item) => {
-  acc[item.taskId] ? acc[item.taskId].cells.push({...item}) : (acc[item.taskId] = {taskId: item.taskId, cells: [{...item}]})
+}).flat().reduce((acc, item) => {
+  acc[item.taskId] ? acc[item.taskId].cells.push({...item}) : (acc[item.taskId] = {taskId: item.taskId, cells: [{query: item.query, ...item}]})
   return acc
-}, {}));
-// const startDateFormat = dateFormat(startDate.value, 2);
-// const endDateFormat = dateFormat(endDate.value);
+}, {});
+
+const values= Object.values(jobs.value);
+
 </script>
 
 <template>
   <g-gantt-chart
-    :chart-start="startDate"
-    :chart-end="endDate"
+    chart-start="07:00"
+    chart-end="18:59"
     precision="hour"
-    date-format="DD/MM/YYY, HH:MM:SS"
+    date-format="HH:mm"
     bar-start="beginDate"
     bar-end="endDate"
     grid
@@ -69,6 +56,7 @@ const values= Object.values(jobs.value.flat().reduce((acc, item) => {
       hasHandles=true
       highlight-on-hover
       :bars="[...item.cells]" />
+    /> 
   </g-gantt-chart>
 </template>
 
