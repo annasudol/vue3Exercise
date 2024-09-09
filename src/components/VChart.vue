@@ -4,24 +4,28 @@ import { GGanttChart, GGanttRow } from "@infectoone/vue-ganttastic";
 import jobsJSON from "../data/jobs.json";
 
 const jobs = ref([]);
-
-jobs.value = jobsJSON.map(data=> data.tasks.map(item=> {
+jobs.value = jobsJSON.map(data=> {
   return {
-  taskId: item.taskName,
-  beginDate: item.beginDate,
-  endDate: item.endDate,
-  ganttBarConfig: {
-    id: item.taskId,
-    immobile: true,
-    hasHandles: true,
-    label: item.taskId,
-    style: {
-          background: "#77d6fa"
-    }
-  }
-}})).flat()
-console.log(jobs, 'jobs');
+    jobId: data.jobId,
+    tasks: data.tasks.map(item=> {
+      return {
+      taskId: item.taskName,
+      beginDate: item.beginDate,
+      endDate: item.endDate,
+      ganttBarConfig: {
+        id: item.taskId,
+        immobile: true,
+        hasHandles: true,
+        label: item.taskId,
+        style: {
+              background: "#77d6fa"
+        }
+      }
+  }})
+}}
+);
 
+console.log(jobs, '')
 const context = ref([
   [
     {
@@ -70,60 +74,46 @@ const context = ref([
   ]
 ]);
 
-function gettaskIdRange() {
-  const today = new Date();
-  const dayOftaskId = today.getDay();
+ const row1BarList = ref([
+    {
+      myBeginDate: "2021-07-13 13:00",
+      myEndDate: "2021-07-13 19:00",
+      ganttBarConfig: {
+        // each bar must have a nested ganttBarConfig object ...
+        id: "unique-id-1", // ... and a unique "id" property
+        label: "Lorem ipsum dolor"
+      }
+    }
+  ])
+  const row2BarList = ref([
+    {
+      myBeginDate: "2021-07-13 00:00",
+      myEndDate: "2021-07-14 02:00",
+      ganttBarConfig: {
+        id: "another-unique-id-2",
+        hasHandles: true,
+        label: "Hey, look at me",
+        style: {
+          // arbitrary CSS styling for your bar
+          background: "#e09b69",
+          borderRadius: "20px",
+          color: "black"
+        },
+        class: "foo" // you can also add CSS classes to your bars!
+      }
+    }
+  ])
 
-  const startDate = new Date(today);
-  startDate.setDate(today.getDate() - dayOftaskId + 1);
-
-  const endDate = new Date(startDate);
-  endDate.setDate(startDate.getDate() + 6);
-
-  const formatDate = date => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
-
-  const currenttaskIdStart = formatDate(startDate);
-  const currenttaskIdEnd = formatDate(endDate);
-
-  return {
-    currenttaskIdStart,
-    currenttaskIdEnd
-  };
-}
-
-const taskIdRangeInChina = gettaskIdRange();
 </script>
-
 <template>
   <g-gantt-chart
-    chart-start="00:00"
-    chart-end="23:59"
+    chart-start="2021-07-12 12:00"
+    chart-end="2021-07-14 12:00"
     precision="hour"
-    date-format="HH:mm"
-    bar-start="beginDate"
-    bar-end="endDate"
-    grid
+    bar-start="myBeginDate"
+    bar-end="myEndDate"
   >
-    <template #upper-timeunit>
-      <h1>
-        {{
-          `${taskIdRangeInChina.currenttaskIdStart} / ${taskIdRangeInChina.currenttaskIdEnd}`
-        }}
-      </h1>
-    </template>
-    <g-gantt-row
-      v-for="(item) in context"
-      :key="item.id"
-      :bars="item"
-      :label="item[0].taskId"
-      immobile="true"
-      hasHandles="true"
-      highlight-on-hover
-    />
+    <g-gantt-row label="My row 1" :bars="[...row1BarList, ...row2BarList]" />
+    <!-- <g-gantt-row label="My row 1" :bars="row2BarList" /> -->
   </g-gantt-chart>
 </template>
