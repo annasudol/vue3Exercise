@@ -6,7 +6,7 @@ import VChart from './components/VChart.vue'
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="Sequence of tasks for a specific machines" />
     </div>
   </header>
 
