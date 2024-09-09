@@ -34,14 +34,14 @@
             {
                 "taskId": "taskA-B",
                 "taskName": "Laminate",
-                "beginDate": "10:00",
+                "beginDate": "11:00",
                 "endDate": "13:00"
             },
             {
                 "taskId": "taskB-C",
                 "taskName": "Trim",
-                "beginDate": "13:00",
-                "endDate": "14:00"
+                "beginDate": "14:00",
+                "endDate": "15:00"
             }
         ]
     }

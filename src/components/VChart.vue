@@ -14,8 +14,12 @@ jobs.value = jobsJSON.map((data)=> {
         id: v.taskId,
         immobile: true,
         hasHandles: true,
-        label: v.taskId
+        label: v.taskId,
+        style: {
+          background
+        }
       };
+
       return {jobId: data.jobId,  background, ganttBarConfig, taskId: v.taskName, beginDate: v.beginDate, endDate: v.endDate};
   });
   return value
@@ -30,8 +34,8 @@ const values= Object.values(jobs.value);
 
 <template>
   <g-gantt-chart
-    chart-start="09:00"
-    chart-end="12:59"
+    chart-start="07:00"
+    chart-end="18:59"
     precision="hour"
     date-format="HH:mm"
     bar-start="beginDate"
@@ -53,15 +57,6 @@ const values= Object.values(jobs.value);
       highlight-on-hover
       :bars="[...item.cells]" />
     /> 
-    <!-- <g-gantt-row
-      v-for="item in jobs"
-      :key="item"
-      :bars="item"
-      :label="item[0].taskId"
-      immobile="true"
-      hasHandles="true"
-      highlight-on-hover
-    /> -->
   </g-gantt-chart>
 </template>
 
