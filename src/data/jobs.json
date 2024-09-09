@@ -1,8 +1,6 @@
 [
     {
         "jobId": "taskA",
-        "beginDate": "08:00",
-        "endDate": "14:00",
         "tasks": [
             {
                 "taskId": "taskA-A",
@@ -26,8 +24,6 @@
     },
     {
         "jobId": "taskB",
-        "beginDate": "09:00",
-        "endDate": "14:00",
         "tasks": [
             {
                 "taskId": "taskB-A",
@@ -48,5 +44,5 @@
                 "endDate": "14:00"
             }
         ]
-    },
+    }
 ]

@@ -1,11 +1,23 @@
 <script setup>
 import { ref } from "vue";
 import { GGanttChart, GGanttRow } from "@infectoone/vue-ganttastic";
-// import jobs from "../jobs.json";
+import jobsJSON from "../data/jobs.json";
+
+const jobs = ref(null);
+fetch(jobsJSON)
+    .then(response => response.json())
+    .then(data => jobs.value = data);
+console.log(jobs, 'data')
+
+    //  "taskId": "taskA-A",
+    //             "taskName": "Print",
+    //             "beginDate": "08:00",
+    //             "endDate": "09:00"
+
 const context = ref([
   [
     {
-      week: "星期一",
+      taskId: "星期一",
       beginDate: "08:00",
       endDate: "09:00",
       ganttBarConfig: {
@@ -20,7 +32,7 @@ const context = ref([
   ],
   [
     {
-      week: "星期二",
+      taskId: "星期二",
       beginDate: "09:00",
       endDate: "18:00",
       ganttBarConfig: {
@@ -35,7 +47,7 @@ const context = ref([
   ],
   [
     {
-      week: "星期三",
+      taskId: "星期三",
       beginDate: "07:00",
       endDate: "20:00",
       ganttBarConfig: {
@@ -50,7 +62,7 @@ const context = ref([
   ],
   [
     {
-      week: "星期四",
+      taskId: "星期四",
       beginDate: "06:00",
       endDate: "21:00",
       ganttBarConfig: {
@@ -66,7 +78,7 @@ const context = ref([
   ],
   [
     {
-      week: "星期五",
+      taskId: "星期五",
       beginDate: "05:00",
       endDate: "19:00",
       ganttBarConfig: {
@@ -81,7 +93,7 @@ const context = ref([
   ],
   [
     {
-      week: "星期六",
+      taskId: "星期六",
       beginDate: "10:00",
       endDate: "22:00",
       ganttBarConfig: {
@@ -96,7 +108,7 @@ const context = ref([
   ],
   [
     {
-      week: "星期天",
+      taskId: "星期天",
       beginDate: "04:00",
       endDate: "23:59",
       ganttBarConfig: {
@@ -112,12 +124,12 @@ const context = ref([
   ]
 ]);
 
-function getWeekRange() {
+function gettaskIdRange() {
   const today = new Date();
-  const dayOfWeek = today.getDay();
+  const dayOftaskId = today.getDay();
 
   const startDate = new Date(today);
-  startDate.setDate(today.getDate() - dayOfWeek + 1);
+  startDate.setDate(today.getDate() - dayOftaskId + 1);
 
   const endDate = new Date(startDate);
   endDate.setDate(startDate.getDate() + 6);
@@ -129,16 +141,16 @@ function getWeekRange() {
     return `${year}-${month}-${day}`;
   };
 
-  const currentWeekStart = formatDate(startDate);
-  const currentWeekEnd = formatDate(endDate);
+  const currenttaskIdStart = formatDate(startDate);
+  const currenttaskIdEnd = formatDate(endDate);
 
   return {
-    currentWeekStart,
-    currentWeekEnd
+    currenttaskIdStart,
+    currenttaskIdEnd
   };
 }
 
-const weekRangeInChina = getWeekRange();
+const taskIdRangeInChina = gettaskIdRange();
 </script>
 
 <template>
@@ -154,15 +166,17 @@ const weekRangeInChina = getWeekRange();
     <template #upper-timeunit>
       <h1>
         {{
-          `${weekRangeInChina.currentWeekStart} / ${weekRangeInChina.currentWeekEnd}`
+          `${taskIdRangeInChina.currenttaskIdStart} / ${taskIdRangeInChina.currenttaskIdEnd}`
         }}
       </h1>
     </template>
     <g-gantt-row
-      v-for="(item, index) in context"
-      :key="index"
+      v-for="(item) in context"
+      :key="item.id"
       :bars="item"
-      :label="item[0].week"
+      :label="item[0].taskId"
+      immobile="true"
+      hasHandles="true"
       highlight-on-hover
     />
   </g-gantt-chart>
