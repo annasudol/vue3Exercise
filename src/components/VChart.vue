@@ -2,77 +2,30 @@
 import { ref } from "vue";
 import { GGanttChart, GGanttRow } from "@infectoone/vue-ganttastic";
 import jobsJSON from "../data/jobs.json";
-
+const randomHexColorCode = () => {
+  let n = (Math.random() * 0xfffff * 1000000).toString(16);
+  return '#' + n.slice(0, 6);
+};
 const jobs = ref([]);
-jobs.value = jobsJSON.map(data=> {
-  return {
-    jobId: data.jobId,
-    tasks: data.tasks.map(item=> {
-      return {
-      taskId: item.taskName,
-      beginDate: item.beginDate,
-      endDate: item.endDate,
-      ganttBarConfig: {
-        id: item.taskId,
+jobs.value = jobsJSON.map((data)=> {
+  const background= randomHexColorCode();
+  const value = data.tasks.map(v=> {
+    const ganttBarConfig= {
+        id: v.taskId,
         immobile: true,
         hasHandles: true,
-        label: item.taskId,
-        style: {
-              background: "#77d6fa"
-        }
-      }
-  }})
-}}
-);
+        label: v.taskId
+      };
+      return {jobId: data.jobId,  background, ganttBarConfig, taskId: v.taskName, beginDate: v.beginDate, endDate: v.endDate};
+  });
+  return value
+}).flat().reduce((acc, item) => {
+  acc[item.taskId] ? acc[item.taskId].cells.push({...item}) : (acc[item.taskId] = {taskId: item.taskId, cells: [{query: item.query, ...item}]})
+  return acc
+}, {});
 
 console.log(jobs, '')
-const context = ref([
-  [
-    {
-      taskId: "Print",
-      beginDate: "08:00",
-      endDate: "09:00",
-      ganttBarConfig: {
-        id: "0",
-        hasHandles: true,
-        label: "A1-1",
-        style: {
-          background: "#e96560"
-        }
-      }
-    }
-  ],
-  [
-    {
-      taskId: "Laminate",
-      beginDate: "09:00",
-      endDate: "10:00",
-      ganttBarConfig: {
-        id: "1",
-        hasHandles: true,
-        label: "A1-2",
-        style: {
-          background: "#e96560"
-        }
-      }
-    }
-  ],
-  [
-    {
-      taskId: "Trim",
-      beginDate: "10:00",
-      endDate: "12:00",
-      ganttBarConfig: {
-        id: "2",
-        hasHandles: true,
-        label: "A1-3",
-        style: {
-          background: "#e96560"
-        }
-      }
-    }
-  ]
-]);
+
 
  const row1BarList = ref([
     {
@@ -107,13 +60,15 @@ const context = ref([
 </script>
 <template>
   <g-gantt-chart
-    chart-start="2021-07-12 12:00"
-    chart-end="2021-07-14 12:00"
+    v-for="job in jobs"
+    v-bind:key="job.taskId"
+    chart-start="08:00"
+    chart-end="12:00"
     precision="hour"
     bar-start="myBeginDate"
     bar-end="myEndDate"
   >
-    <g-gantt-row label="My row 1" :bars="[...row1BarList, ...row2BarList]" />
+    <!-- <g-gantt-row label="My row 1" :bars="[...row1BarList, ...row2BarList]" /> -->
     <!-- <g-gantt-row label="My row 1" :bars="row2BarList" /> -->
   </g-gantt-chart>
 </template>
