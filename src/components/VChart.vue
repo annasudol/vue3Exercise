@@ -24,41 +24,51 @@ jobs.value = jobsJSON.map((data)=> {
   return acc
 }, {});
 
-console.log(jobs, '')
-
-
- const row1BarList = ref([
-    {
-      myBeginDate: "2021-07-13 13:00",
-      myEndDate: "2021-07-13 19:00",
-      ganttBarConfig: {
-        // each bar must have a nested ganttBarConfig object ...
-        id: "unique-id-1", // ... and a unique "id" property
-        label: "Lorem ipsum dolor"
-      }
-    }
-  ])
-  const row2BarList = ref([
-    {
-      myBeginDate: "2021-07-13 00:00",
-      myEndDate: "2021-07-14 02:00",
-      ganttBarConfig: {
-        id: "another-unique-id-2",
-        hasHandles: true,
-        label: "Hey, look at me",
-        style: {
-          // arbitrary CSS styling for your bar
-          background: "#e09b69",
-          borderRadius: "20px",
-          color: "black"
-        },
-        class: "foo" // you can also add CSS classes to your bars!
-      }
-    }
-  ])
+const values= Object.values(jobs.value);
 
 </script>
+
 <template>
+  <g-gantt-chart
+    chart-start="09:00"
+    chart-end="12:59"
+    precision="hour"
+    date-format="HH:mm"
+    bar-start="beginDate"
+    bar-end="endDate"
+    grid
+    color-scheme="black"
+  >
+    <template #upper-timeunit>
+      <h1>
+      app
+      </h1>
+    </template>
+    <g-gantt-row
+      v-for="item in values"
+      :key="item.taskId"
+      :label="item.taskId"
+      immobile=true
+      hasHandles=true
+      highlight-on-hover
+      :bars="[...item.cells]" />
+    /> 
+    <!-- <g-gantt-row
+      v-for="item in jobs"
+      :key="item"
+      :bars="item"
+      :label="item[0].taskId"
+      immobile="true"
+      hasHandles="true"
+      highlight-on-hover
+    /> -->
+  </g-gantt-chart>
+</template>
+
+
+
+
+<!-- <template>
   <g-gantt-chart
     v-for="job in jobs"
     v-bind:key="job.taskId"
@@ -67,8 +77,7 @@ console.log(jobs, '')
     precision="hour"
     bar-start="myBeginDate"
     bar-end="myEndDate"
-  >
+  > -->
     <!-- <g-gantt-row label="My row 1" :bars="[...row1BarList, ...row2BarList]" /> -->
     <!-- <g-gantt-row label="My row 1" :bars="row2BarList" /> -->
-  </g-gantt-chart>
-</template>
+
