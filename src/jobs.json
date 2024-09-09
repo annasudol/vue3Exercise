@@ -1,0 +1,52 @@
+[
+    {
+        "jobId": "taskA",
+        "beginDate": "08:00",
+        "endDate": "14:00",
+        "tasks": [
+            {
+                "taskId": "taskA-A",
+                "taskName": "Print",
+                "beginDate": "08:00",
+                "endDate": "09:00"
+            },
+            {
+                "taskId": "taskA-B",
+                "taskName": "Laminate",
+                "beginDate": "09:00",
+                "endDate": "11:00"
+            },
+            {
+                "taskId": "taskA-C",
+                "taskName": "Trim",
+                "beginDate": "11:00",
+                "endDate": "14:00"
+            }
+        ]
+    },
+    {
+        "jobId": "taskB",
+        "beginDate": "09:00",
+        "endDate": "14:00",
+        "tasks": [
+            {
+                "taskId": "taskB-A",
+                "taskName": "Print",
+                "beginDate": "09:00",
+                "endDate": "10:00"
+            },
+            {
+                "taskId": "taskA-B",
+                "taskName": "Laminate",
+                "beginDate": "10:00",
+                "endDate": "13:00"
+            },
+            {
+                "taskId": "taskB-C",
+                "taskName": "Trim",
+                "beginDate": "13:00",
+                "endDate": "14:00"
+            }
+        ]
+    },
+]
