@@ -1,16 +1,14 @@
 <script setup>
 import { ref } from "vue";
 import { GGanttChart, GGanttRow } from "@infectoone/vue-ganttastic";
+import randomRgba from "@/helper/randomRgba"
 import jobsJSON from "../data/jobs.json";
 const startDate = ref(null);
 const endDate = ref(null);
-const randomHexColorCode = () => {
-  let n = (Math.random() * 0xfffff * 1000000).toString(16);
-  return '#' + n.slice(0, 6);
-};
+
 const jobs = ref([]);
 jobs.value = jobsJSON.map((data)=> {
-  const background= randomHexColorCode();
+  const background= randomRgba();
   const value = data.tasks.map(v=> {
     const ganttBarConfig= {
         id: v.taskId,
@@ -32,7 +30,7 @@ jobs.value = jobsJSON.map((data)=> {
 }, {});
 
 const values= Object.values(jobs.value);
-console.log(startDate)
+
 </script>
 
 <template>
