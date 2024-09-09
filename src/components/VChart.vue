@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import { GGanttChart, GGanttRow } from "@infectoone/vue-ganttastic";
 import jobsJSON from "../data/jobs.json";
+const startDate = ref(null);
+const endDate = ref(null);
 const randomHexColorCode = () => {
   let n = (Math.random() * 0xfffff * 1000000).toString(16);
   return '#' + n.slice(0, 6);
@@ -19,7 +21,8 @@ jobs.value = jobsJSON.map((data)=> {
           background
         }
       };
-
+      startDate.value = parseInt(startDate.value) < parseInt(v.beginDate) ? startDate.value : v.beginDate;
+      endDate.value = parseInt(endDate.value) > parseInt(v.endDate) ? endDate.value : v.endDate;
       return {jobId: data.jobId,  background, ganttBarConfig, taskId: v.taskName, beginDate: v.beginDate, endDate: v.endDate};
   });
   return value
@@ -29,13 +32,13 @@ jobs.value = jobsJSON.map((data)=> {
 }, {});
 
 const values= Object.values(jobs.value);
-
+console.log(startDate)
 </script>
 
 <template>
   <g-gantt-chart
-    chart-start="07:00"
-    chart-end="18:59"
+    :chart-start="startDate"
+    :chart-end="endDate"
     precision="hour"
     date-format="HH:mm"
     bar-start="beginDate"
