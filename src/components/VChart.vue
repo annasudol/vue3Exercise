@@ -4,26 +4,35 @@ import { GGanttChart, GGanttRow } from "@infectoone/vue-ganttastic";
 import jobsJSON from "../data/jobs.json";
 
 const jobs = ref(null);
-fetch(jobsJSON)
-    .then(response => response.json())
-    .then(data => jobs.value = data);
-console.log(jobs, 'data')
 
-    //  "taskId": "taskA-A",
-    //             "taskName": "Print",
-    //             "beginDate": "08:00",
-    //             "endDate": "09:00"
+
+jobs.value = jobsJSON.map(data=> data.tasks.map(item=> {
+  return {
+  taskId: item.taskName,
+  beginDate: item.beginDate,
+  endDate: item.endDate,
+  ganttBarConfig: {
+    id: item.taskId,
+    immobile: true,
+    hasHandles: true,
+    label: item.taskId,
+    style: {
+          background: "#77d6fa"
+    }
+  }
+}}))
+console.log(jobs, 'jobs');
 
 const context = ref([
   [
     {
-      taskId: "星期一",
+      taskId: "Print",
       beginDate: "08:00",
       endDate: "09:00",
       ganttBarConfig: {
         id: "0",
         hasHandles: true,
-        label: "需求收集和分析  负责人：小张",
+        label: "T1",
         style: {
           background: "#e96560"
         }
@@ -32,13 +41,13 @@ const context = ref([
   ],
   [
     {
-      taskId: "星期二",
+      taskId: "Laminate",
       beginDate: "09:00",
       endDate: "18:00",
       ganttBarConfig: {
         id: "1",
         hasHandles: true,
-        label: "系统设计  负责人：小强",
+        label: "t2",
         style: {
           background: "#5ccfa3"
         }
@@ -47,77 +56,15 @@ const context = ref([
   ],
   [
     {
-      taskId: "星期三",
+      taskId: "Trim",
       beginDate: "07:00",
       endDate: "20:00",
       ganttBarConfig: {
         id: "2",
         hasHandles: true,
-        label: "编码实现  负责人：老李",
+        label: "A2",
         style: {
           background: "#77d6fa"
-        }
-      }
-    }
-  ],
-  [
-    {
-      taskId: "星期四",
-      beginDate: "06:00",
-      endDate: "21:00",
-      ganttBarConfig: {
-        id: "3",
-        hasHandles: true,
-        label: "编码实现  负责人：小明",
-        style: {
-          color: "#fff",
-          background: "#1b2a47"
-        }
-      }
-    }
-  ],
-  [
-    {
-      taskId: "星期五",
-      beginDate: "05:00",
-      endDate: "19:00",
-      ganttBarConfig: {
-        id: "4",
-        hasHandles: true,
-        label: "内部测试  负责人：小雪",
-        style: {
-          background: "#5ccfa3"
-        }
-      }
-    }
-  ],
-  [
-    {
-      taskId: "星期六",
-      beginDate: "10:00",
-      endDate: "22:00",
-      ganttBarConfig: {
-        id: "5",
-        hasHandles: true,
-        label: "系统优化和文档整理  负责人：小欣",
-        style: {
-          background: "#f8bc45"
-        }
-      }
-    }
-  ],
-  [
-    {
-      taskId: "星期天",
-      beginDate: "04:00",
-      endDate: "23:59",
-      ganttBarConfig: {
-        id: "6",
-        immobile: true,
-        hasHandles: true,
-        label: "部署和上线  负责人：老王",
-        style: {
-          background: "#f3953d"
         }
       }
     }
