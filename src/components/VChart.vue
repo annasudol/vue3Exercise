@@ -47,25 +47,33 @@ const values = Object.values(jobs.value)
 </script>
 
 <template>
-  <g-gantt-chart
-    :chart-start="startDate"
-    :chart-end="endDate"
-    precision="hour"
-    date-format="HH:mm"
-    bar-start="beginDate"
-    bar-end="endDate"
-    grid
-    color-scheme="vue"
-  >
-    <g-gantt-row
-      v-for="item in values"
-      :key="item.taskId"
-      :label="item.taskId"
-      immobile="true"
-      hasHandles="true"
-      highlight-on-hover
-      :bars="[...item.cells]"
-    />
-    />
-  </g-gantt-chart>
+  <div class="wrapper">
+    <g-gantt-chart
+      :chart-start="startDate"
+      :chart-end="endDate"
+      precision="hour"
+      date-format="HH:mm"
+      bar-start="beginDate"
+      bar-end="endDate"
+      grid
+      color-scheme="vue"
+    >
+      <g-gantt-row
+        v-for="item in values"
+        :key="item.taskId"
+        :label="item.taskId"
+        immobile="true"
+        hasHandles="true"
+        highlight-on-hover
+        :bars="[...item.cells]"
+      />
+    </g-gantt-chart>
+  </div>
 </template>
+
+<style scoped>
+.wrapper .g-gantt-char {
+  min-width: 800px !important;
+  overflow: visible;
+}
+</style>

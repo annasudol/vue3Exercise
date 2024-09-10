@@ -44,5 +44,28 @@
         "endDate": "15:00"
       }
     ]
+  },
+  {
+    "jobId": "taskC",
+    "tasks": [
+      {
+        "taskId": "taskC-A",
+        "taskName": "Print",
+        "beginDate": "11:00",
+        "endDate": "12:00"
+      },
+      {
+        "taskId": "taskC-B",
+        "taskName": "Laminate",
+        "beginDate": "08:00",
+        "endDate": "09:00"
+      },
+      {
+        "taskId": "taskC-C",
+        "taskName": "Trim",
+        "beginDate": "10:00",
+        "endDate": "11:00"
+      }
+    ]
   }
 ]

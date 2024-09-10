@@ -21,6 +21,6 @@ a,
   }
 }
 
- .g-gantt-chart .g-upper-timeunit {
-  visibility:hidden !important;
-} 
+.g-gantt-chart .g-upper-timeunit {
+  visibility: hidden !important;
+}
