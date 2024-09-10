@@ -44,7 +44,6 @@ jobs.value = jobsJSON
   }, {})
 
 const values = Object.values(jobs.value)
-
 </script>
 
 <template>
