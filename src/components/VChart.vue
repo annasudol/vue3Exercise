@@ -58,6 +58,11 @@ const values = Object.values(jobs.value)
       grid
       color-scheme="vue"
     >
+      <template #upper-timeunit>
+      <h2>
+      Hours
+      </h2>
+    </template>
       <g-gantt-row
         v-for="item in values"
         :key="item.taskId"
