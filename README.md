@@ -57,14 +57,14 @@ Task was completed with Vue3, Javascript, [vue-ganttastic](https://zunnzunn.gith
 • Each task represent different color
 • Table displays and reads data from json, and assumes that that data has specific format:
 
-```sh
-  [{jobId: "uniq job Id",
+```javascript
+  [{jobId: "string", //uniq job Id
     tasks: [
       {
-        taskId: uniq task Id,
-        taskName: eg. Printing, Laminate,
-        beginDate: MM:HH,
-        endDate: MM:HH
+        taskId: "string", //uniq task Id
+        taskName: "string", //eg. Printing, Laminate
+        beginDate: "string", //MM:HH
+        endDate: "string" //MM:HH
       },
     ]
   }]
@@ -76,12 +76,12 @@ Task was completed with Vue3, Javascript, [vue-ganttastic](https://zunnzunn.gith
   "MM:HH"
 ```
 
-• Assumed that data in json are validated and hour endDate or later than the beginDate
-• Machines include, but are not limited to, printers, laminators, guillotines and UV
+* Assumed that data in json are validated and hour endDate or later than the beginDate
+* Machines include, but are not limited to, printers, laminators, guillotines and UV
 coating.
-• Jobs can be varied by durations.
-• A machine can only perform one task at a time.
-• A task can only start when its predecessors have completed AND there is availability on the
+* Jobs can be varied by durations.
+* A machine can only perform one task at a time.
+* A task can only start when its predecessors have completed AND there is availability on the
 machine.
-• Not all jobs follow the same sequence of tasks.
-• Tasks should be performed as early as possible.
+* Not all jobs follow the same sequence of tasks.
+* Tasks should be performed as early as possible.
