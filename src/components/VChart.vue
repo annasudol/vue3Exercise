@@ -39,7 +39,7 @@ jobs.value = jobsJSON
   .reduce((acc, item) => {
     acc[item.taskId]
       ? acc[item.taskId].cells.push({ ...item })
-      : (acc[item.taskId] = { taskId: item.taskId, cells: [{ query: item.query, ...item }] })
+      : (acc[item.taskId] = { taskId: item.taskId, cells: [{ ...item }] })
     return acc
   }, {})
 
@@ -59,10 +59,8 @@ const values = Object.values(jobs.value)
       color-scheme="vue"
     >
       <template #upper-timeunit>
-      <h2>
-      Hours
-      </h2>
-    </template>
+        <h2>Hours</h2>
+      </template>
       <g-gantt-row
         v-for="item in values"
         :key="item.taskId"

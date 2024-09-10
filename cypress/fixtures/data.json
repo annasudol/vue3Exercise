@@ -1,0 +1,83 @@
+[
+    {
+        "jobId": "taskA",
+        "tasks": [
+            {
+                "taskId": "taskA-A",
+                "taskName": "Print",
+                "beginDate": "08:00",
+                "endDate": "09:00"
+            },
+            {
+                "taskId": "taskA-B",
+                "taskName": "Laminate",
+                "beginDate": "09:00",
+                "endDate": "11:00"
+            },
+            {
+                "taskId": "taskA-C",
+                "taskName": "Trim",
+                "beginDate": "11:00",
+                "endDate": "14:00"
+            }
+        ]
+    },
+    {
+        "jobId": "taskB",
+        "tasks": [
+            {
+                "taskId": "taskB-A",
+                "taskName": "Print",
+                "beginDate": "09:00",
+                "endDate": "10:00"
+            },
+            {
+                "taskId": "taskA-B",
+                "taskName": "Laminate",
+                "beginDate": "11:00",
+                "endDate": "13:00"
+            },
+            {
+                "taskId": "taskB-C",
+                "taskName": "Trim",
+                "beginDate": "14:00",
+                "endDate": "15:00"
+            },
+            {
+                "taskId": "taskB-D",
+                "taskName": "UVCoating",
+                "beginDate": "15:00",
+                "endDate": "16:00"
+            }
+        ]
+    },
+    {
+        "jobId": "taskC",
+        "tasks": [
+            {
+                "taskId": "taskC-A",
+                "taskName": "Print",
+                "beginDate": "11:00",
+                "endDate": "12:00"
+            },
+            {
+                "taskId": "taskC-B",
+                "taskName": "Laminate",
+                "beginDate": "08:00",
+                "endDate": "09:00"
+            },
+            {
+                "taskId": "taskC-C",
+                "taskName": "Trim",
+                "beginDate": "10:00",
+                "endDate": "11:00"
+            },
+            {
+                "taskId": "taskC-E",
+                "taskName": "Guillotine",
+                "beginDate": "12:00",
+                "endDate": "14:00"
+            }
+        ]
+    }
+]
