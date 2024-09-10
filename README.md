@@ -61,10 +61,10 @@ Task was completed with Vue3, Javascript, [vue-ganttastic](https://zunnzunn.gith
   [{jobId: "uniq job Id",
     tasks: [
       {
-        "taskId": "uniq task Id",
-        "taskName": "eg. Printing, Laminate",
-        "beginDate": "MM:HH",
-        "endDate": "MM:HH"
+        taskId: uniq task Id,
+        taskName: eg. Printing, Laminate,
+        beginDate: MM:HH,
+        endDate: MM:HH
       },
     ]
   }]
@@ -79,8 +79,8 @@ Task was completed with Vue3, Javascript, [vue-ganttastic](https://zunnzunn.gith
 • Assumed that data in json are validated and hour endDate or later than the beginDate
 • Machines include, but are not limited to, printers, laminators, guillotines and UV
 coating.
-• Jobs can be varied by durations
-• A machine can only perform one task at a time
+• Jobs can be varied by durations.
+• A machine can only perform one task at a time.
 • A task can only start when its predecessors have completed AND there is availability on the
 machine.
 • Not all jobs follow the same sequence of tasks.
