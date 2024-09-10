@@ -28,7 +28,7 @@ jobs.value = jobsJSON
         jobId: data.jobId,
         background,
         ganttBarConfig,
-        taskId: v.taskName,
+        taskId: v.taskName.toLowerCase().trim(),
         beginDate: v.beginDate,
         endDate: v.endDate
       }
