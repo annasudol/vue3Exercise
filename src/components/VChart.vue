@@ -72,8 +72,8 @@ const values = Object.values(jobs.value)
 </template>
 
 <style scoped>
-.wrapper .g-gantt-char {
+.wrapper {
   min-width: 800px !important;
-  overflow: visible;
+  overflow-x: auto;
 }
 </style>
