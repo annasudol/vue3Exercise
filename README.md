@@ -1,14 +1,10 @@
 # vue3Exercise
 
-This template should help get you started developing with Vue 3 in Vite.
+UI VUE JavaScript Technical Challenge.
 
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
@@ -20,12 +16,6 @@ pnpm install
 
 ```sh
 pnpm dev
-```
-
-### Compile and Minify for Production
-
-```sh
-pnpm build
 ```
 
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
@@ -55,3 +45,43 @@ pnpm test:e2e
 ```sh
 pnpm lint
 ```
+
+### Task Description
+
+Task was completed with Vue3, Javascript, [vue-ganttastic](https://zunnzunn.github.io/vue-ganttastic/) library for displaying graphs
+
+### Task Info
+
+• Task displays specific types of work perfumed by machines.
+• Table can display many different work that are done by different machines.
+• Each task represent different color
+• Table displays and reads data from json, and assumes that that data has specific format:
+
+```sh
+  [{jobId: "uniq job Id",
+    tasks: [
+      {
+        "taskId": "uniq task Id",
+        "taskName": "eg. Printing, Laminate",
+        "beginDate": "MM:HH",
+        "endDate": "MM:HH"
+      },
+    ]
+  }]
+```
+
+• beginDate and endDate are displayed in a format:
+
+```sh
+  "MM:HH"
+```
+
+• Assumed that data in json are validated and hour endDate or later than the beginDate
+• Machines include, but are not limited to, printers, laminators, guillotines and UV
+coating.
+• Jobs can be varied by durations
+• A machine can only perform one task at a time
+• A task can only start when its predecessors have completed AND there is availability on the
+machine.
+• Not all jobs follow the same sequence of tasks.
+• Tasks should be performed as early as possible.
